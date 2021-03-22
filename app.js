@@ -4,6 +4,8 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+const userRoutes = require('./routes/userRoute');
+
 const mongoDb = 'mongodb+srv://arzoogoyal87:parsepassword@mycluster.4rdpd.mongodb.net/spontom?retryWrites=true&w=majority'
 mongoose.connect(mongoDb, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true})
     .then(()=>{
@@ -17,9 +19,9 @@ mongoose.connect(mongoDb, {useNewUrlParser: true, useUnifiedTopology: true, useF
 app.use(morgan('dev'));
 app.use(bodyParser.json({}));
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: false}));
 
-
+app.use("/user", userRoutes);
 
 app.use((req, res, next) => {
     const error = new Error('Not found');

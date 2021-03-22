@@ -6,12 +6,16 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/userModel');
 
-const userController = require('../controllers/userController');
+const {userSignup, userLogin, deleteUser, sendOTP, verifyOTP} = require('../controllers/userController');
 
-router.post('/signup',userController.user_signUp);
+router.post('/signup',userSignup);
 
-router.post('/login', userController.user_login);
+router.post('/login', userLogin);
 
-router.delete('/:userId', userController.deleleUser);
+router.delete('/:userId', deleteUser);
+
+router.post('/sendotp', sendOTP);
+
+router.post('/verifyotp', verifyOTP);
 
 module.exports = router;

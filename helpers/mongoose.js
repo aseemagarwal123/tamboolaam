@@ -1,6 +1,6 @@
 
 const mongoose = require('mongoose');
-const MONGO_URI = process.env.MONGO_URI||'mongodb+srv://arzoogoyal87:parsepassword@mycluster.4rdpd.mongodb.net/spontom?retryWrites=true&w=majority';
+const MONGO_URI = process.env.MONGO_URI ||'mongodb+srv://arzoogoyal87:parsepassword@mycluster.4rdpd.mongodb.net/spontom?retryWrites=true&w=majority';
 
 
 // Fixing deprication warnings

@@ -1,10 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-
-const User = require('../models/userModel');
 
 const {userSignup, userLogin, deleteUser, sendOTP, verifyOTP} = require('../controllers/userController');
 

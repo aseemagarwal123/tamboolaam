@@ -7,27 +7,22 @@ var validateEmail = function(email) {
 };
 
 const userSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
     name: {
-        type: String,
-        required: true
+        type: String
     },
     email: {
         type: String,
-        required: true,
+        require:true,
         validate: [validateEmail, 'Please enter a valid email address']
     },
     password:{
-        type: String,
-        required: true
+        type: String
     },
     phone: {
         type: Number,
+        require:true,
+        unique:true
     },
-    // roles: {
-    //     type: [String],
-    //     default: ['admin', 'manager', 'driver', 'client'] 
-    // },
     user_type: {
         type: String,
         required: true
@@ -35,4 +30,4 @@ const userSchema = mongoose.Schema({
 });
 
 userSchema.plugin(timestamps);
-module.exports = mongoose.model('User', userSchema);
+exports.User = mongoose.model('User', userSchema);

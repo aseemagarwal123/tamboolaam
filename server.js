@@ -2,7 +2,7 @@ require('dotenv').config();
 const app = require('./app');
 const db = require('./helpers/mongoose');
 
-const PORT = process.env.PORT || 2000;
+const PORT = process.env.PORT || 3000;
 
 db.connect().then(() => {
   console.log('\x1b[1;30;42m Connected to DB \x1b[0m');

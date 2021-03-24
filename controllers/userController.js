@@ -130,19 +130,18 @@ const verifyOTP = async (req, res, next)=>{
           if(req.body.user_type == 'client'){
              var user = await User.findOne({phone:Number(req.body.phone)})
              if(user) {
-                return res.status(200).send({
+                return res.status(user ? 200 : 401).send({
                     'response': {
-                      'message': 'phone verified sucessfully',
-                      'success':true,
-                      'user':user,
-                      'user_type':user.user_type,
-                      'auth_type':'login',
-                      "token":jwt.sign({userId: user._id,role: user.user_type},"secret")
-                    }
-                  });
+                        'message': (user && user.user_type == 'client') ? 'phone verified sucessfully' :'phone verification failed',
+                        'success':(user && user.user_type == 'client') ? true : false ,
+                        'user':(user && user.user_type == 'client') ? user : null,
+                        'user_type':(user && user.user_type == 'client') ? user.user_type : null,
+                        'auth_type':'login',
+                        "token":(user && user.user_type == 'client') ? jwt.sign({userId: user._id,role: user.user_type},"secret") :null
+                        },
+                    });
              }
              else {
-                 
                 user = new User({
                     phone: Number(req.body.phone),
                     user_type: 'client'
